@@ -23,26 +23,30 @@ public class Problem105 {
     }
 
     public TreeNode buildTree(int[] preorder, int[] inorder) {
-        if(preorder.length == 0) return null;
-        List<Integer> list = new ArrayList<>();
-        for(Integer i: inorder) list.add(i);
-        return build(preorder, 0, list);
+      if(preorder.length == 0) return null;
+        List<Integer> inorderList = new ArrayList<>();
+        List<Integer> preorderList = new ArrayList<>();
+        for(Integer i: inorder) inorderList.add(i);
+        for(Integer i: preorder) preorderList.add(i);
+        return build(preorderList, inorderList, 0, inorderList.size()-1);
     }
 
-    private TreeNode build(int[] preorder, int preOrderIndex, List<Integer> list) {
-        if(preOrderIndex == preorder.length) return null;
-        if(preOrderIndex > 0 && preorder[preOrderIndex- 1] == list.get(0)) {
-            return null;//base case
+    private TreeNode build(List<Integer> preorder, List<Integer> inorder, int inorderLeftIndex, int inorderIndexRight) {
+        //base case
+        if(inorderLeftIndex > inorderIndexRight) return null;
+        else if(preorder.isEmpty()) return null;
+        int currentItem = preorder.get(0);
+        TreeNode root = new TreeNode(currentItem);
+        preorder.remove(0);
+        int inorderIndex = 0;
+        for(int j = inorderLeftIndex; j < inorder.size(); j++) {
+            if(inorder.get(j) == currentItem) inorderIndex = j;
         }
-        TreeNode left = build(preorder, preOrderIndex + 1, list);
-        TreeNode right = build(preorder, preOrderIndex + 1, list);
-        TreeNode node = new TreeNode(preorder[preOrderIndex]);
-        if(preorder[preOrderIndex] == list.get(0)) {
-            list.remove(0);
-        }
-        node.left = left;
-        node.right = right;
-        return node;
+        TreeNode left = build(preorder, inorder, inorderLeftIndex, inorderIndex-1);
+        TreeNode right = build(preorder, inorder, inorderIndex+1, inorderIndexRight);
+        root.left = left;
+        root.right = right;
+        return root;
     }
 
     public class TreeNode {
