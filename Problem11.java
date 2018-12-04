@@ -1,16 +1,18 @@
 public class Problem11 {
     public int maxArea(int[] height) {
         int max = 0;
-        int least = height[0];
-        int leastIndex = 0;
-        for(int i = 1 ; i < height.length; i++) {
-            int tmpMax = (height[i] > height[i-1]) ? height[i-1] : height[i];
-            int tmp = (height[i] > least) ? least *(i- leastIndex) : height[i] *(i- leastIndex);
-            if(tmpMax > tmp) {
-                leastIndex = i-1;
-                least = height[i-1];
+        int i = 0;
+        int j = height.length-1;
+        while(i < j) {
+            int tmpMax = 0;
+            if(height[i] > height[j]){
+                tmpMax = height[j] * (j-i);
+                j--;
+            } else {
+                tmpMax = height[i] * (j-i);
+                i++;
             }
-            max = Math.max(tmp, tmpMax);
+            max = Math.max(max, tmpMax);
         }
         return max;
     }
