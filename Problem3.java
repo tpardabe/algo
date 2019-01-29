@@ -4,41 +4,23 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Problem3 {
-
-    public static void main(String[] args) {
-        Problem3 solution = new Problem3();
-        System.out.println(solution.lengthOfLongestSubstring("abba"));
-    }
     public int lengthOfLongestSubstring(String s) {
-        if(s.isEmpty()) return 0;
-        int size = s.length();
-        Map<String, Integer> map = new HashMap<>();
+        if(s.length() < 2) return s.length();
+        Map map = new HashMap();
         int max = 0;
-        int currentMax = 0;
-        String ch = "";
-        char prevChar = '0';
-        for(int i = 0; i < size; i++){
-            ch = s.charAt(i) +"";
-            if(map.containsKey(ch)) {
-                if(prevChar == s.charAt(i))
-                    currentMax = 1;
-                max = Math.max(max, currentMax);
-                System.out.println(ch +" "+ currentMax);
-                continue;
+        int tmpMax = 0;
+        int startIndex =  0;
+        for(int i = 0; i < s.length(); i ++) {
+            char current = s.charAt(i);
+            if(map.containsKey(current) && (Integer)map.get(current) >= startIndex) {
+                tmpMax = i- (Integer)map.get(current);
+                startIndex = (Integer)map.get(current) +1;
+            } else {
+                tmpMax++;
             }
-            /*if(map.containsKey(ch)){
-                max = Math.max(max, map.size());
-                i = map.get(ch)-1;
-                map =  new HashMap<>();
-                continue;
-            }*/
-            currentMax += 1;
-            prevChar = s.charAt(i);
-            max = Math.max(max, currentMax);
-            System.out.println(ch +" "+ currentMax);
-            map.put(ch, currentMax);
+            map.put(current, i);
+            max = Math.max(tmpMax, max);
         }
-        max = Math.max(max, map.get(ch));
         return max;
     }
 }
