@@ -1,2 +1,2 @@
-# leetcode
-Leetcode solutions
+# Algo solutions
+Algo solutions
