@@ -1,3 +1,4 @@
+package leetcode;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,5 +22,11 @@ public class Problem107 {
         result.get(level).add(root.val);
         traverse(root.left, level+1, result);
         traverse(root.right, level+1, result);
+    }
+    public class TreeNode {
+        int val;
+        TreeNode left;
+        TreeNode right;
+        TreeNode(int x) { val = x; }
     }
 }

@@ -1,3 +1,7 @@
+package codeforces;
+import java.io.PrintWriter;
+import java.util.Scanner;
+
 public class Problem1020B {
     static int[] graph;
     public static void main(String[] args) {

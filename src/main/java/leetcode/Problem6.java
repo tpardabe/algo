@@ -1,3 +1,4 @@
+package leetcode;
 class Problem6 {
     public String convert(String s, int numRows) {
         if(numRows < 2) return s;

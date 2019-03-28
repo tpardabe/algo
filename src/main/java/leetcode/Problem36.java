@@ -1,3 +1,4 @@
+package leetcode;
 public class Problem36 {
     public static void main(String [] args) {
         Problem36 solution = new Problem36();

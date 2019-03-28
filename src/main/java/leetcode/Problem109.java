@@ -1,3 +1,8 @@
+package leetcode;
+
+import java.util.ArrayList;
+import java.util.List;
+
 class Problem109 {
     public TreeNode sortedListToBST(ListNode head) {
         if(head == null) return null;
@@ -16,5 +21,16 @@ class Problem109 {
         root.left = traverse(list, left, middle-1);
         root.right  = traverse(list, middle+1, right);
         return root;
+    }
+    public class TreeNode {
+        int val;
+        TreeNode left;
+        TreeNode right;
+        TreeNode(int x) { val = x; }
+    }
+    public class ListNode {
+        int val;
+        ListNode next;
+        ListNode(int x) { val = x; }
     }
 }
