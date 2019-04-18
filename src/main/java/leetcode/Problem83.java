@@ -1,6 +1,5 @@
 package leetcode;
 
-import javafx.util.Pair;
 
 public class Problem83 {
 
