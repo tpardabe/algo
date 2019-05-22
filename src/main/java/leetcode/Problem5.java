@@ -1,11 +1,11 @@
 package leetcode;
 
-import javafx.util.Pair;
+//import javafx.util.Pair;
 
 public class Problem5 {
 
 
-    public static void main(String[]args ) {
+    /*public static void main(String[]args ) {
         Problem5 solution = new Problem5();
         System.out.println(solution.longestPalindrome("aba"));
     }
@@ -44,7 +44,7 @@ public class Problem5 {
             right++;
         }
         return new Pair(left + 1, right - 1);
-    }
+    }*/
 
 
 
