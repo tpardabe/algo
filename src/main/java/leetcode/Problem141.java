@@ -24,17 +24,16 @@ public class Problem141 {
         return hasCycle;
     }
     public boolean hasCycle2(ListNode head) {
+        if(head == null) return false;
         ListNode slow = head;
-        if(head == null || head.next == null) return false;
         ListNode fast = head.next;
-        boolean hasCycle = false;
-        while(slow != null && fast != null && !hasCycle) {
-            if(slow == fast) hasCycle = true;
+        while(slow != null && fast != null) {
+            if(slow == fast) return true;
             slow = slow.next;
-            if(fast.next != null) fast = fast.next.next;
-            else fast = fast.next;
+            fast = fast.next;
+            if(fast != null) fast = fast.next;
         }
-        return hasCycle;
+        return false;
     }
     public class ListNode {
         int val;
