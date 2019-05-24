@@ -23,6 +23,20 @@ public class Problem1019 {
         }
         return result;
     }
+    
+    public int[] nextLargerNodes1(ListNode head) {
+        List<Integer> list = new ArrayList();
+        Stack<Integer> stack = new Stack();
+        for(ListNode cur = head; cur != null; cur = cur.next) list.add(cur.val);
+        int[] result = new int[list.size()];
+        for(int i = 0; i < list.size(); i++) {
+            while(!stack.isEmpty() && list.get(stack.peek()) < list.get(i)) {
+                result[stack.pop()] = list.get(i);
+            }
+            stack.push(i);
+        }
+        return result;
+    }
 
     private int recurse(ListNode head, Stack stack) {
         if(head == null) return 0;
