@@ -35,15 +35,4 @@ public class Problem1019 {
         ListNode next;
         ListNode(int x) { val = x; }
     }
-    public static void main(String[] args) {
-        Problem1019 solution = new Problem1019();
-        solution.solve();
-    }
-    public void solve() {
-        ListNode root = new ListNode(2);
-        root.next = new ListNode(1);
-        root.next.next = new ListNode(5);
-        int[] result = nextLargerNodes(root);
-        for(int s: result) System.out.println(s);
-    }
 }
