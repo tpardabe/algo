@@ -1,3 +1,8 @@
+package leetcode;
+
+import java.util.HashSet;
+import java.util.Set;
+
 class Problem817 {
     public int numComponents(ListNode head, int[] G) {
         Set map = new HashSet();
@@ -12,5 +17,10 @@ class Problem817 {
             head =head.next;
         }
         return components;
+    }
+    public class ListNode {
+        int val;
+        ListNode next;
+        ListNode(int x) { val = x; }
     }
 }
