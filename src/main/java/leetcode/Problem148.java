@@ -8,7 +8,7 @@ public class Problem148 {
     }
     
     public void recurse(ListNode prev, ListNode slow, ListNode fast) {
-        if()
+        ;
     }
 
 
