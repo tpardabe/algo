@@ -24,4 +24,12 @@ public class Problem369 {
         head.val = sum %10;
         return sum/10;
     }
+    class ListNode {
+        int val;
+        ListNode next;
+        ListNode(int x) {
+            val = x;
+            next = null;
+        }
+    }
 }
