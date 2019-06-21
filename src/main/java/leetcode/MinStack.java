@@ -1,4 +1,8 @@
 package leetcode;
+
+import java.util.Iterator;
+import java.util.LinkedList;
+
 class MinStack {
 
     /** initialize your data structure here. */

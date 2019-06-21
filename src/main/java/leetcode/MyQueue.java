@@ -1,4 +1,7 @@
 package leetcode;
+
+import java.util.Stack;
+
 class MyQueue {
 
     /** Initialize your data structure here. */

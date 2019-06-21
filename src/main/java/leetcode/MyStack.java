@@ -1,5 +1,8 @@
 package leetcode;
 
+import java.util.PriorityQueue;
+import java.util.Queue;
+
 class MyStack {
      Queue<Integer> queue;
     /** Initialize your data structure here. */
