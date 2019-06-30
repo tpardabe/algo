@@ -1,4 +1,9 @@
 package leetcode;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Stack;
+
 class Problem144 {
     public List<Integer> preorderTraversal(TreeNode root) {
       Stack<TreeNode> stack = new Stack();
@@ -19,5 +24,11 @@ class Problem144 {
             if(root != null) list.add(root.val);
         }
         return list;
+    }
+    public class TreeNode {
+        int val;
+        TreeNode left;
+        TreeNode right;
+        TreeNode(int x) { val = x; }
     }
 }
