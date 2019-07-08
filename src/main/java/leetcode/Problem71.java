@@ -1,50 +1,46 @@
 package leetcode;
 
-import java.io.*;
+import java.util.Stack;
 
 public class Problem71 {
 
-    public static void main(String[] args ){
-
-
-
-       try{
-           String fileString  = readFile(new File("C:\\Users\\u6313\\Desktop\\TEAM19\\PTP\\Actual\\4-UTF8.txt"), "utf-8");
-
-           write(fileString, new File("C:\\Users\\u6313\\Desktop\\TEAM19\\PTP\\Actual\\tmp.txt"));
-       } catch (Exception ex) {
-           System.out.println(ex.getMessage());
-       }
-    }
-
-    public static String readFile(File file, String encoding) throws IOException {
-        if (file != null && file.exists() && file.canRead() && file.isFile()) {
-            BufferedReader in = new BufferedReader(new InputStreamReader(new FileInputStream(file), encoding));
-            StringBuilder sb = new StringBuilder((int)file.length());
-
-            try {
-                boolean var4 = false;
-
-                int c;
-                while((c = in.read()) != -1) {
-                    sb.append((char)c);
-                }
-            } finally {
-                in.close();
+    public String simplifyPath(String path) {
+        Stack<String> stack = new Stack<>();
+        int currentIndex = 0;
+        for(int i = 0; i < path.length(); i++) {
+            char cur = path.charAt(i);
+            if(i > 0 && ( i +1 == path.length() -1
+                    || (i < path.length()-2 && path.charAt(i+2) == '/')) && cur == '.' && path.charAt(i + 1) == '.' && path.charAt(i-1) == '/'
+            ) {
+                if(!stack.isEmpty()) stack.pop();
+                currentIndex = i + 2;
+                i++;
+            } else if(cur == '.' && i > 0 && path.charAt(i-1) == '/'
+                    && ( i == path.length() -1
+                    || (i < path.length()-1 && path.charAt(i+1) == '/')))
+                currentIndex = i +1;
+            else if(cur == '/') {
+                if(i > 0 && path.charAt(i-1) != '/' && currentIndex != i) stack.push(path.substring(currentIndex, i));
+                currentIndex = i;
+            } else if(i == path.length() -1){
+                stack.push(path.substring(currentIndex, i + 1));
             }
-
-            return sb.toString();
-        } else {
-            return null;
         }
+        if(stack.isEmpty()) stack.push("/");
+        StringBuilder builder = new StringBuilder();
+        build(stack, builder);
+        return builder.toString();
     }
 
-    public static void write(String inputString, File file) throws IOException {
-        BufferedWriter out = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(file), "windows-1251"));
-        //создание 1 блока
-        out.write(inputString);
+    private void build(Stack<String> stack, StringBuilder builder) {
+        if(stack.isEmpty()) return;
+        String res = stack.pop();
+        build(stack, builder);
+        builder.append(res);
+    }
 
-        out.flush();
-        out.close();
+    public static void main(String[] args) {
+        Problem71 problem71 = new Problem71();
+        System.out.println(problem71.simplifyPath("/../"));
     }
 }
