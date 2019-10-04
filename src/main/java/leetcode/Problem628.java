@@ -18,23 +18,13 @@ class Problem628 {
             } else if(num > third) {
                 third = num;
             }
-            if(num < 0 && num < theSmallest) {
+            if(num < theSmallest) {
                  secondSmallest = theSmallest;
                 theSmallest = num;
-            } else if(num < 0 && num < secondSmallest) {
+            } else if(num < secondSmallest) {
                 secondSmallest = num;
             }
         }
-        int sum = firstNum;
-        if(theSmallest != Integer.MAX_VALUE && secondSmallest != Integer.MAX_VALUE ) {
-            if(theSmallest * secondSmallest > second * third) {
-                sum *= (theSmallest * secondSmallest);
-            } else {
-                sum *= (second * third);
-            }
-        } else {
-             sum *= (second * third);
-        }
-        return sum;
+        return Math.max(firstNum*second * third, firstNum*theSmallest * secondSmallest);
     }
 }
