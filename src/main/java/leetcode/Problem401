@@ -1,0 +1,33 @@
+package leetcode;
+class Problem401 {
+   public List<String> readBinaryWatch(int num) {
+       List<String> result = new ArrayList();
+       boolean[] watch = new boolean[10];
+       generate(result, watch, num, 0, 0);
+       return result;
+   }
+   private void generate(List<String> result, boolean[] watch, int count, int currentcount, int index) {
+       if(count == currentcount) {
+           //base case
+           int hour = 0;
+           int minut = 0;
+           for(int i = 0; i < watch.length; i++) {
+               if(watch[i]) {
+                   if(i < 6 ) minut += (int) Math.pow(2, i);
+                   else hour += (int) Math.pow(2, i-6);
+               }
+           }
+           if(minut >=60 || hour >= 12) return;
+           String m = (minut > 9) ? "" : "0";
+           String time = hour + ":" + m + minut;
+           result.add(time);
+       } else {
+           for(int i = index; i < watch.length; i++) {
+               if(watch[i]) continue;
+               watch[i] = true;
+               generate(result, watch, count, currentcount + 1, i +1);
+               watch[i] = false;
+           }
+       }
+   }
+}
